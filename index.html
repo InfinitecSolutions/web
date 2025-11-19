@@ -514,7 +514,7 @@
         }
 
         .clients-container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -535,20 +535,75 @@
             height: 150px;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
-            filter: grayscale(100%);
-            opacity: 0.7;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(59, 130, 246, 0.1));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .client-logo:hover::before {
+            opacity: 1;
         }
 
         .client-logo:hover {
             transform: translateY(-5px);
-            filter: grayscale(0%);
-            opacity: 1;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .client-logo img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+        .client-logo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .client-logo:hover .client-logo-text {
+            transform: scale(1.05);
+        }
+
+        /* Client-specific styles */
+        .client-multiservicios .client-logo-text {
+            color: #0d6efd;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .client-artdent .client-logo-text {
+            color: #0a58ca;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .client-hairstudio .client-logo-text {
+            color: #d63384;
+            font-family: 'Verdana', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .client-grupoluar .client-logo-text {
+            color: #198754;
+            font-family: 'Tahoma', sans-serif;
+            font-weight: bold;
+        }
+
+        .client-temodelaciones .client-logo-text {
+            color: #6f42c1;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
         }
 
         /* Footer */
@@ -1323,16 +1378,30 @@
         </div>
         <div class="clients-container">
             <div class="clients-grid">
-                <!-- Reemplaza estas URLs con las imágenes reales de tus logos -->
-                <div class="client-logo reveal">
-                    <img src="https://via.placeholder.com/200x100/6B46C1/FFFFFF?text=Logo+Cliente+1" alt="Cliente 1">
-                </div>
-                <div class="client-logo reveal">
-                    <img src="https://via.placeholder.com/200x100/3B82F6/FFFFFF?text=Logo+Cliente+2" alt="Cliente 2">
-                </div>
-                <div class="client-logo reveal">
-                    <img src="https://via.placeholder.com/200x100/8B5CF6/FFFFFF?text=Logo+Cliente+3" alt="Cliente 3">
-                </div>
+                <!-- Client 1: Multiservicios L&J -->
+                <a href="https://infinitecsolutions.github.io/multiservicios_LJ/" target="_blank" class="client-logo client-multiservicios reveal">
+                    <div class="client-logo-text">MULTISERVICIOS L&J</div>
+                </a>
+                
+                <!-- Client 2: ArtDent -->
+                <a href="https://infinitecsolutions.github.io/Artdent/" target="_blank" class="client-logo client-artdent reveal">
+                    <div class="client-logo-text">ArtDent</div>
+                </a>
+                
+                <!-- Client 3: Hair Studio -->
+                <a href="https://infinitecsolutions.github.io/HairStudio/" target="_blank" class="client-logo client-hairstudio reveal">
+                    <div class="client-logo-text">Hair Studio</div>
+                </a>
+                
+                <!-- Client 4: Grupo Luar -->
+                <a href="https://infinitecsolutions.github.io/grupo_luar/" target="_blank" class="client-logo client-grupoluar reveal">
+                    <div class="client-logo-text">GRUPO LUAR</div>
+                </a>
+                
+                <!-- Client 5: TE Modelaciones -->
+                <a href="https://temodelaciones.github.io/web/" target="_blank" class="client-logo client-temodelaciones reveal">
+                    <div class="client-logo-text">TE MODELACIONES</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1403,7 +1472,7 @@
             </div>
         </div>
         <div class="chatbot-button" id="chatbot-button">
-            <i class="fas fa-brain"></i>
+            <i class="fas fa-robot"></i>
             <div class="chatbot-notification" id="chatbot-notification">1</div>
         </div>
     </div>
