@@ -538,6 +538,7 @@
             text-decoration: none;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .client-logo::before {
@@ -550,6 +551,7 @@
             background: linear-gradient(135deg, rgba(107, 70, 193, 0.1), rgba(59, 130, 246, 0.1));
             opacity: 0;
             transition: var(--transition);
+            z-index: -1;
         }
 
         .client-logo:hover::before {
@@ -604,6 +606,13 @@
             color: #6f42c1;
             font-family: 'Courier New', monospace;
             font-weight: bold;
+        }
+
+        .client-michicrunch .client-logo-text {
+            color: #fd7e14;
+            font-family: 'Impact', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Footer */
@@ -1402,6 +1411,11 @@
                 <a href="https://temodelaciones.github.io/web/" target="_blank" class="client-logo client-temodelaciones reveal">
                     <div class="client-logo-text">TE MODELACIONES</div>
                 </a>
+                
+                <!-- Client 6: Mi Chi Crunch -->
+                <a href="https://michicrunch.github.io/menu/" target="_blank" class="client-logo client-michicrunch reveal">
+                    <div class="client-logo-text">MI CHI CRUNCH</div>
+                </a>
             </div>
         </div>
     </section>
@@ -1797,6 +1811,44 @@
                 chatbotNotification.textContent = '1';
             }
         }, 30000);
+        
+        // Fix for client logo links on mobile devices
+        document.addEventListener('DOMContentLoaded', function() {
+            const clientLogos = document.querySelectorAll('.client-logo');
+            
+            clientLogos.forEach(logo => {
+                // Add touchstart event for mobile devices
+                logo.addEventListener('touchstart', function(e) {
+                    // Store the touch start time
+                    this.touchStartTime = new Date().getTime();
+                }, { passive: true });
+                
+                // Add touchend event for mobile devices
+                logo.addEventListener('touchend', function(e) {
+                    // Calculate touch duration
+                    const touchEndTime = new Date().getTime();
+                    const touchDuration = touchEndTime - this.touchStartTime;
+                    
+                    // If it's a quick tap (less than 300ms), treat it as a click
+                    if (touchDuration < 300) {
+                        e.preventDefault();
+                        
+                        // Get the href attribute
+                        const href = this.getAttribute('href');
+                        
+                        // Open the link in a new tab
+                        window.open(href, '_blank');
+                    }
+                }, { passive: false });
+                
+                // For desktop, keep the original click behavior
+                logo.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    window.open(href, '_blank');
+                });
+            });
+        });
     </script>
 </body>
 </html>
